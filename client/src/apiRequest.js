@@ -2,11 +2,11 @@ import axios from "axios";
 import jwt_decode from "jwt-decode";
 
 export const publicRequest = axios.create({
-  baseURL: "http://localhost:5500/api",
+  baseURL: "https://main--starlit-pavlova-4ad9d8.netlify.app/api",
 });
 
 export const userRequest = axios.create({
-  baseURL: "http://localhost:5500/api",
+  baseURL: "https://main--starlit-pavlova-4ad9d8.netlify.app/api",
 });
 
 const NewRefershTokenGenrate = async () => {
