@@ -1,0 +1,22 @@
+{
+  "name": "blinkitclone",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build":"cd api && npm install && cd ../client && npm install && npm run build",
+    "start":"node api/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AbhayKadam57/Blinkit-web-app-Clone.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AbhayKadam57/Blinkit-web-app-Clone/issues"
+  },
+  "homepage": "https://github.com/AbhayKadam57/Blinkit-web-app-Clone#readme"
+}
