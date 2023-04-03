@@ -268,7 +268,7 @@ const AddressSection = () => {
             // window.location.href = "/orders";
 
             Navigate("/orders");
-            window.location.reload(true);
+            // window.location.reload(true);
           }
         },
         theme: {
