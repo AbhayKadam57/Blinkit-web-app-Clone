@@ -67,11 +67,7 @@ function App() {
     <Container show={openCart}>
       <Router>
         <Routes>
-          <Route
-            exact
-            path="/"
-            element={user ? <Home /> : <Navigate to="/login" />}
-          />
+          <Route exact path="/" element={user ? <Home /> : <LoginPage />} />
           <Route path="/register" element={<SignUppage />} />
           <Route
             path="/login"
