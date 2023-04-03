@@ -164,7 +164,10 @@ const OrderPage = () => {
         {OrderList.map((o, i) => (
           <OrderBox>
             <TimeBox>
-              Order at {new Date(o.updatedAt).getHours()}:
+              Order on {new Date(o.updatedAt).getDate()}/
+              {new Date(o.updatedAt).getMonth() + 1}/
+              {new Date(o.updatedAt).getFullYear()} at{" "}
+              {new Date(o.updatedAt).getHours()}:
               {new Date(o.updatedAt).getMinutes()}{" "}
               {new Date(o.updatedAt).getHours() >= 12 ? "PM" : "AM"}
             </TimeBox>
