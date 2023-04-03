@@ -27,6 +27,9 @@ const Connect = async () => {
 };
 
 const app = express();
+
+app.options("*", cors());
+
 app.use(cors());
 app.use(helmet());
 app.use(express.json());
