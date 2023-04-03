@@ -16,6 +16,7 @@ import {
   OpenCart,
   UpdateProducts,
 } from "../redux/cartSlice";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   display: ${(props) => (props.show === true ? "flex" : "none")};

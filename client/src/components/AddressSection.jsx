@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { OpenaddressBook } from "../redux/cartSlice";
 import { publicRequest, userRequest } from "../apiRequest";
 import useRazorpay from "react-razorpay";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const AddressBox = styled.div`
   width: 22%;
@@ -149,6 +149,8 @@ const AddressList = styled.div`
 const AddressSection = () => {
   const dispatch = useDispatch();
 
+  const Navigate = useNavigate();
+
   const [showAddress, setShowAddress] = useState(false);
 
   const [address, setAddress] = useState({});
@@ -263,7 +265,10 @@ const AddressSection = () => {
 
             // window.location.replace("http://localhost:5173/orders");
 
-            window.location.href = "/orders";
+            // window.location.href = "/orders";
+
+            Navigate("/orders");
+            window.location.reload(true);
           }
         },
         theme: {

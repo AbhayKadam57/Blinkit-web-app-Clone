@@ -88,8 +88,8 @@ function App() {
             element={user ? <OrderPage /> : <Navigate to="/" />}
           />
         </Routes>
+        {user && <Cart />}
       </Router>
-      {user && <Cart />}
     </Container>
   );
 }
