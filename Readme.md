@@ -8,7 +8,7 @@ Live Website - https://my-blinkit-clone-client.onrender.com/
 
 Watch Live Demo - https://share-me.video/video/WpFJeJBidkK0pqPKpDMFGno6yE13z3XfN9BKoPD3na1ncT4li1sxC9qaNH9ma4uv
 
-###📝 Table of Contents
+### 📝 Table of Contents
 
 - Features
 - Technologies
@@ -16,7 +16,7 @@ Watch Live Demo - https://share-me.video/video/WpFJeJBidkK0pqPKpDMFGno6yE13z3XfN
 - Usage
 - Authors
 
-###🧐 Features
+### 🧐 Features
 
 - User registration and authentication with login
 - Product listing and searching
@@ -26,7 +26,7 @@ Watch Live Demo - https://share-me.video/video/WpFJeJBidkK0pqPKpDMFGno6yE13z3XfN
 - Payment using Razorpay Payment Gateway
 - Order history
 
-###⛏️ Technologies
+### ⛏️ Technologies
 
 This project is built with the following technologies:
 
@@ -37,7 +37,7 @@ This project is built with the following technologies:
 - Styled components (for styling)
 - Font Awesome (for icons)
 
-###🏁 Installation
+### 🏁 Installation
 
 To run this project on your local machine, follow these steps:
 
@@ -98,7 +98,7 @@ for success test - success@razorpay
 for failure test - failure@razorpay
 ```
 
-###✍️ Authors
+### ✍️ Authors
 
 [@AbhayKadam57](https://github.com/AbhayKadam57) - only for clone making
 
