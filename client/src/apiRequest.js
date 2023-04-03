@@ -2,11 +2,11 @@ import axios from "axios";
 import jwt_decode from "jwt-decode";
 
 export const publicRequest = axios.create({
-  baseURL: "http://localhost:5500/api",
+  baseURL: `${import.meta.env.VITE_BACKEND_API_URL}/api`,
 });
 
 export const userRequest = axios.create({
-  baseURL: "http://localhost:5500/api",
+  baseURL: `${import.meta.env.VITE_BACKEND_API_URL}/api`,
 });
 
 const NewRefershTokenGenrate = async () => {
