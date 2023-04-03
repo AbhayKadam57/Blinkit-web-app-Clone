@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { publicRequest } from "../apiRequest";
+import { publicRequest, userRequest } from "../apiRequest";
 import { Link } from "react-router-dom";
 
 const Container = styled.div`
@@ -47,7 +47,7 @@ const ProductList = () => {
   useEffect(() => {
     const getCat = async () => {
       try {
-        const cat = await publicRequest.get("/product/getallcategories");
+        const cat = await userRequest.get("/product/getallcategories");
 
         SetCategoryList(cat.data);
       } catch (e) {
