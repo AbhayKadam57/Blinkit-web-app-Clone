@@ -80,16 +80,16 @@ function App() {
 
           <Route
             path="/:category/:id"
-            element={user ? <ProductPage /> : <Navigate to="/login" />}
+            element={user ? <ProductPage /> : <Navigate to="/" />}
           />
 
           <Route
             path="/:category"
-            element={user ? <ProductListing /> : <Navigate to="/login" />}
+            element={user ? <ProductListing /> : <Navigate to="/" />}
           />
           <Route
             path="/orders"
-            element={user ? <OrderPage /> : <Navigate to="/login" />}
+            element={user ? <OrderPage /> : <Navigate to="/" />}
           />
         </Routes>
       </Router>
