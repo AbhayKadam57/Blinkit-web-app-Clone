@@ -11,8 +11,6 @@ const ProductRoutes = require("./routes/ProductRoutes.js");
 const CartRoutes = require("./routes/CartRoutes.js");
 const OrderRoutes = require("./routes/OrderRoutes.js");
 const PaymentRoutes = require("./routes/PaymentRoutes.js");
-const path = require("path");
-const clinet = require("../client/index.html");
 
 const PORT = process.env.PORT || 5500;
 
