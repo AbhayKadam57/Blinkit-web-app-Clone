@@ -11,7 +11,7 @@ const ProductRoutes = require("./routes/ProductRoutes.js");
 const CartRoutes = require("./routes/CartRoutes.js");
 const OrderRoutes = require("./routes/OrderRoutes.js");
 const PaymentRoutes = require("./routes/PaymentRoutes.js");
-const path = require("path");
+
 const PORT = process.env.PORT || 5500;
 
 dotenv.config();
@@ -41,12 +41,6 @@ app.use("/api/product", ProductRoutes);
 app.use("/api/cart", CartRoutes);
 app.use("/api/order", OrderRoutes);
 app.use("/api/payment", PaymentRoutes);
-
-app.use(express.static(path.join(__dirname, "./client/dist")));
-
-app.get("*", function (req, res) {
-  res.sendFile(path.join(__dirname, "./client/dist/index.html"));
-});
 
 app.listen(PORT, () => {
   Connect();
