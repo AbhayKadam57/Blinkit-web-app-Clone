@@ -12,7 +12,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { publicRequest } from "../apiRequest";
+import { publicRequest, userRequest } from "../apiRequest";
 import { AddProducts, UpdateProducts } from "../redux/cartSlice";
 import { Link } from "react-router-dom";
 
@@ -68,7 +68,7 @@ const SingleProduct = styled.div`
   border: 1px solid #bcbbbb;
   transition: all 0.5s ease;
   padding: 10px;
-  gap: 10px;
+  /* gap: 10px; */
   text-decoration: none;
   color: #000;
 
@@ -176,9 +176,7 @@ const CategoryProducts = ({ category }) => {
   useEffect(() => {
     const getProducts = async () => {
       try {
-        const res = await publicRequest.get(
-          `/product/find?category=${category}`
-        );
+        const res = await userRequest.get(`/product/find?category=${category}`);
 
         setCatgoryProducts(res.data);
       } catch (e) {
@@ -215,7 +213,7 @@ const CategoryProducts = ({ category }) => {
                   <img src={product.images[0]} />
                 </Link>
                 <ProductInfo>
-                  <p>{product.name.slice(0, 30)}...</p>
+                  <p>{product.name.slice(0, 25)}...</p>
                   <small>{product.unit}</small>
                   <div>
                     <p>₹ {product.price}</p>

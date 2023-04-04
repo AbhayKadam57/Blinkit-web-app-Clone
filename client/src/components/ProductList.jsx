@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { publicRequest, userRequest } from "../apiRequest";
 import { Link } from "react-router-dom";
+import { mobile } from "../responsive";
 
 const Container = styled.div`
   display: flex;
@@ -9,6 +10,7 @@ const Container = styled.div`
   justify-content: center;
   width: 100%;
   margin-bottom: 20px;
+  ${mobile({ marginTop: "20px" })}
 `;
 
 const CatetogryBox = styled.div`

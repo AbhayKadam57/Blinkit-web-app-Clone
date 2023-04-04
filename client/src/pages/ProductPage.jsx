@@ -12,12 +12,15 @@ import styled from "styled-components";
 import { publicRequest, userRequest } from "../apiRequest";
 import Navbar from "../components/Navbar";
 import { AddProducts, UpdateProducts } from "../redux/cartSlice";
+import { mobile } from "../responsive";
 
 const Container = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
   width: 100vw;
+  height: ${(props) => props.show && "100vh"};
+  overflow: ${(props) => props.show && "hidden"};
 `;
 
 const Box = styled.div`
@@ -25,6 +28,7 @@ const Box = styled.div`
   display: flex;
   align-content: center;
   padding: 10px;
+  ${mobile({ flexDirection: "column", marginTop: "50px" })}
 `;
 
 const Left = styled.div`
@@ -34,6 +38,7 @@ const Left = styled.div`
   overflow-y: scroll;
   flex-direction: column;
   border-right: 2px solid rgba(0, 0, 0, 0.1);
+  ${mobile({ width: "100%", border: "none" })}
 
   &::-webkit-scrollbar {
     display: none;
@@ -127,6 +132,14 @@ const ProductDetails = styled.div`
   flex-direction: column;
   padding: 10px;
   gap: 20px;
+  ${mobile({
+    position: "absolute",
+    top: "160%",
+    left: "50%;",
+    transform: "translateX(-50%)",
+    width: "100%",
+    padding: "30px",
+  })}
 `;
 
 const Heading = styled.p`
@@ -159,10 +172,19 @@ const Right = styled.div`
   flex-direction: column;
   padding: 30px;
   gap: 20px;
+  ${mobile({
+    position: "absolute",
+    top: "110%",
+    padding: "10px",
+    left: "50%;",
+    transform: "translateX(-50%)",
+    width: "100%",
+  })}
 `;
 
 const ProductTitle = styled.p`
   font-size: 24px;
+  ${mobile({ fontSize: "22px" })}
 `;
 
 const Brand = styled.p`
@@ -225,7 +247,9 @@ const Button = styled.button`
 const ProductPage = () => {
   const [change, SetChange] = useState(0);
   const [activeImage, SetActiveImage] = useState("");
-  const { products, selected } = useSelector((state) => state.cartInfo);
+  const { products, selected, openCart } = useSelector(
+    (state) => state.cartInfo
+  );
   const { id } = useParams();
   const [product, Setproduct] = useState({});
   const { user } = useSelector((state) => state.usersInfo);
@@ -260,7 +284,7 @@ const ProductPage = () => {
     return () => {
       isSubscribe = false;
     };
-  }, []);
+  }, [id]);
 
   console.log(product.images);
 
@@ -287,7 +311,7 @@ const ProductPage = () => {
   };
 
   return (
-    <Container>
+    <Container show={openCart}>
       <Navbar />
       <Box>
         <Left>

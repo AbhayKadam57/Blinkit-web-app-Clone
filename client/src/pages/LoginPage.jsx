@@ -24,6 +24,7 @@ const Container = styled.div`
 
 const Form = styled.form`
   min-height: 30%;
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -67,7 +68,7 @@ const Links = styled(Link)`
 `;
 
 const Card = styled.div`
-  width: 25%;
+  min-width: 25%;
   background-color: #f8cb46;
   display: flex;
   flex-direction: column;

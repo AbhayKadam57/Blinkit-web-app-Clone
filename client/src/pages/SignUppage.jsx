@@ -68,7 +68,7 @@ const Links = styled(Link)`
 `;
 
 const Card = styled.div`
-  width: 25%;
+  min-width: 25%;
   background-color: #f8cb46;
   display: flex;
   flex-direction: column;

@@ -7,9 +7,10 @@ import { OpenaddressBook } from "../redux/cartSlice";
 import { publicRequest, userRequest } from "../apiRequest";
 import useRazorpay from "react-razorpay";
 import { useNavigate, useParams } from "react-router-dom";
+import { laptop, mobile, tablet } from "../responsive";
 
 const AddressBox = styled.div`
-  width: 22%;
+  width: 32%;
   background-color: #fff;
   overflow-y: scroll;
   position: relative;
@@ -17,6 +18,7 @@ const AddressBox = styled.div`
   display: flex;
   flex-direction: column;
   z-index: 10;
+  ${mobile({ width: "100%" })};
 `;
 
 const Top = styled.div`
@@ -133,7 +135,7 @@ const Label = styled.label`
 `;
 
 const AddressList = styled.div`
-  max-width: 100%;
+  width: 100%;
   border: 1px solid #ddd;
   padding: 10px;
   display: flex;

@@ -17,6 +17,7 @@ import {
   UpdateProducts,
 } from "../redux/cartSlice";
 import { useNavigate } from "react-router-dom";
+import { mobile, tablet } from "../responsive";
 
 const Container = styled.div`
   display: ${(props) => (props.show === true ? "flex" : "none")};
@@ -33,7 +34,7 @@ const Container = styled.div`
 `;
 
 const CartBox = styled.div`
-  width: 22%;
+  min-width: 32%;
   background-color: #fff;
   overflow-y: scroll;
   position: relative;
@@ -41,6 +42,7 @@ const CartBox = styled.div`
   display: flex;
   flex-direction: column;
   z-index: 10;
+  ${mobile({ width: "100%" })};
 `;
 
 const Top = styled.div`

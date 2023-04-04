@@ -65,7 +65,7 @@ const Home = () => {
 
     const getProducts = async () => {
       try {
-        const res = await publicRequest.get("/product/find");
+        const res = await userRequest.get("/product/find");
 
         res.data.map((item) => {
           for (let key in item) {

@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { publicRequest } from "../apiRequest";
 import { Link } from "react-router-dom";
+import { mobile } from "../responsive";
 
 const Container = styled.div`
   width: 100%;
@@ -16,6 +17,14 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   border: 1px solid #ddd;
+  ${mobile({
+    position: "absolute",
+    top: "100%",
+    left: "-30%",
+    transform: "translateX(50%)",
+    width: "80%",
+    margin: "10px 0",
+  })}
 `;
 
 const SearchButton = styled.div`
@@ -54,7 +63,7 @@ const SearchResult = styled.div`
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.2);
-  display: flex;
+  display: ${(props) => (props.show === false ? "flex" : "none")};
   flex-direction: column;
 `;
 
@@ -123,6 +132,8 @@ const SearchBar = () => {
 
   const [hide, SetHide] = useState(true);
 
+  const [hideSearch, SetHideSearch] = useState(true);
+
   const [List, SetList] = useState([
     "Search 'milk'",
     "Search 'curd'",
@@ -141,6 +152,8 @@ const SearchBar = () => {
           const res = await publicRequest.get(
             `/product/search?term=${SearchTerm}`
           );
+
+          res.data && SetHideSearch(false);
 
           SetProductList(res.data);
         } else {
@@ -162,6 +175,11 @@ const SearchBar = () => {
     SetHide(true);
   };
 
+  const handleClick = () => {
+    SetHideSearch(true);
+    setSearchItem("");
+  };
+
   return (
     <Container>
       <SearchButton>
@@ -176,12 +194,13 @@ const SearchBar = () => {
         onBlur={() => handleBlur()}
       />
       {SearchTerm.length > 0 && ProductsList.length > 0 && (
-        <SearchResult>
+        <SearchResult show={hideSearch}>
           {ProductsList.slice(0, 5).map((p, i) => (
             <Link
               to={`/${p.category}/${p._id}`}
               style={{ textDecoration: "none", color: "#222" }}
               key={p._id}
+              onClick={() => handleClick()}
             >
               <FindItem>
                 <img src={p.images[0]} alt="" />

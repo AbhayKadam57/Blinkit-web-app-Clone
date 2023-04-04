@@ -8,6 +8,7 @@ import Cart from "../pages/Cart";
 import { OpenCart } from "../redux/cartSlice";
 import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar";
+import { laptop, mobile } from "../responsive";
 
 const Container = styled.div`
   display: flex;
@@ -46,6 +47,7 @@ const Center = styled.div`
   height: 100%;
   padding: 20px;
   border: 1px solid #eee;
+  ${mobile({ flex: "0", height: "0", padding: "0", border: "none" })}
 
   &:hover {
     background-color: #f4f4f4;
@@ -61,6 +63,7 @@ const Right = styled.div`
   height: 100%;
   padding: 20px;
   border: 1px solid #eee;
+  gap: 20px;
 
   &:hover {
     background-color: #f4f4f4;
@@ -91,6 +94,8 @@ const Button = styled.button`
   gap: 10px;
   font-size: 1.2em;
   max-width: 7em;
+  ${mobile({ fontSize: "0.85em" })};
+  ${laptop({ fontSize: "1em" })}
 `;
 
 const CartDetail = styled.p`

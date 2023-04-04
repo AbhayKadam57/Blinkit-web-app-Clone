@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { userRequest } from "../apiRequest";
 import Navbar from "../components/Navbar";
+import { mobile, tablet } from "../responsive";
 
 const Container = styled.div`
   display: flex;
@@ -12,12 +13,14 @@ const Container = styled.div`
   justify-content: center;
   width: 100vw;
   flex-direction: column;
+  ${tablet({ backgroundColor: "red" })}
 `;
 
 const Box = styled.div`
   width: 80%;
   padding: 10px;
   flex-direction: column;
+  ${mobile({ marginTop: "50px" })}
 `;
 
 const OrderBox = styled.div`
@@ -45,6 +48,7 @@ const ArrivingBox = styled.p`
 const AddressingBox = styled.p`
   font-size: 16px;
   color: #444;
+  ${mobile({ fontSize: "0.8em" })}
 `;
 
 const ProducBox = styled.div`
@@ -75,11 +79,13 @@ const CenterBox = styled.div`
   p {
     font-size: 18px;
     font-weight: 400;
+    ${mobile({ fontSize: "0.9em" })}
   }
 
   small {
     font-size: 16px;
     color: #444;
+    ${mobile({ fontSize: "0.7em" })}
   }
 `;
 
@@ -93,6 +99,7 @@ const RighthandBox = styled.div`
   p {
     font-size: 18px;
     font-weight: 600;
+    ${mobile({ fontSize: "0.9em" })}
   }
 `;
 
@@ -100,7 +107,8 @@ const Status = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 10%;
+  max-width: 10%;
+  margin-left: 50px;
   gap: 10px;
 
   p {

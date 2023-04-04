@@ -13,6 +13,7 @@ import { publicRequest, userRequest } from "../apiRequest";
 import Navbar from "../components/Navbar";
 import { AddProducts, UpdateProducts } from "../redux/cartSlice";
 import { Link } from "react-router-dom";
+import { laptop, mobile, tablet } from "../responsive";
 
 const Container = styled.div`
   display: flex;
@@ -24,18 +25,22 @@ const Container = styled.div`
 
 const Box = styled.div`
   width: 80%;
-
+  margin-top: 20px;
   display: flex;
+  justify-content: center;
+  padding: 20px;
+  ${mobile({ marginTop: "50px", width: "100%" })}
 `;
 
 const Left = styled.div`
-  flex: 2;
+  flex: 1.5;
   position: sticky;
   top: 0;
   flex-direction: column;
   overflow-y: scroll;
   height: 100vh;
   border: 2px solid #ddd;
+  ${laptop({ flex: "1", minWidth: "20%" })};
 
   &::-webkit-scrollbar {
     display: none;
@@ -45,6 +50,7 @@ const Image = styled.div`
   width: 50px;
   height: 50px;
   transition: all 0.3s ease;
+  ${laptop({ width: "40px", height: "40px" })}
 
   img {
     width: 80%;
@@ -54,7 +60,7 @@ const Image = styled.div`
 `;
 
 const Category = styled.div`
-  height: 5em;
+  /* height: 5em; */
   padding: 10px;
   border-bottom: 2px solid #ddd;
   display: flex;
@@ -64,10 +70,24 @@ const Category = styled.div`
   background-color: ${(props) => props.show && "#e3f8e6"};
   border-left: ${(props) => props.show && "3px solid #0c831f"};
   cursor: pointer;
+  ${laptop({
+    padding: "5px",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: "0px",
+    minWidth: "20%",
+  })}
 
   p {
     font-size: 18px;
     text-transform: capitalize;
+    ${laptop({
+      fontSize: "0.8em",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+    })}
   }
 
   &:hover {
@@ -94,6 +114,8 @@ const RightTop = styled.div`
   justify-content: space-between;
   padding: 10px;
   border: 1px solid #ddd;
+  width: 100%;
+  ${mobile({ flexDirection: "column", alignItems: "start", fontSize: "0.9em" })}
 `;
 
 const MainHeading = styled.p`
@@ -111,9 +133,11 @@ const SortSelect = styled.div`
   align-items: center;
   justify-content: center;
   gap: 20px;
+  ${mobile({ flexDirection: "column", alignItems: "start" })}
 
   small {
     font-size: 14px;
+    ${mobile({ fontSize: "12px" })}
   }
 `;
 
@@ -205,6 +229,8 @@ const ProductBox = styled.div`
   border-right: 1px solid #ddd;
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
+  ${tablet({ flex: "48%" })};
+  /* ${mobile({ flex: "100%" })} */
 `;
 
 const PriceBox = styled.div`
