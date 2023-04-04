@@ -8,6 +8,7 @@ import ProductList from "../components/ProductList";
 import CategoryProducts from "../components/CategoryProducts";
 import Cart from "./Cart";
 import { memo } from "react";
+import Loader from "../components/Loader";
 
 const Container = styled.div`
   display: flex;
@@ -28,6 +29,8 @@ const Home = () => {
   const { openCart } = useSelector((state) => state.cartInfo);
 
   const [categories, setCategories] = useState([]);
+
+  const [New, setNew] = useState(true);
 
   // let accessToken = localStorage.getItem("accessToken");
   // let refreshToken = localStorage.getItem("refreshToken");
@@ -94,11 +97,14 @@ const Home = () => {
       <button onClick={() => LogoutUser()}>Logout</button> */}
       <Navbar />
 
-      <ProductList />
+      {categories.length === 0 && <Loader />}
+      <>
+        <ProductList />
 
-      {categories.map((item, key) => (
-        <CategoryProducts category={item} key={key} />
-      ))}
+        {categories.map((item, key) => (
+          <CategoryProducts category={item} key={key} />
+        ))}
+      </>
 
       {/* <Cart /> */}
     </Container>
