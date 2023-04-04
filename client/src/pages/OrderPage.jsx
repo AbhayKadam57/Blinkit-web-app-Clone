@@ -13,7 +13,6 @@ const Container = styled.div`
   justify-content: center;
   width: 100vw;
   flex-direction: column;
-  ${tablet({ backgroundColor: "red" })}
 `;
 
 const Box = styled.div`

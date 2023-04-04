@@ -21,6 +21,7 @@ const CatetogryBox = styled.div`
   gap: 20px;
   flex-wrap: wrap;
   padding: 20px;
+  ${mobile({ alignItems: "center", justifyContent: "center" })}
 `;
 
 const Box = styled(Link)`
@@ -29,6 +30,7 @@ const Box = styled(Link)`
   text-align: center;
   text-decoration: none;
   color: #222;
+  ${mobile({ width: "6em" })}
   img {
     width: 100%;
     height: 100%;

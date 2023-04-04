@@ -28,25 +28,25 @@ const Container = styled.div`
 `;
 
 const SearchButton = styled.div`
-  width: 5%;
+  width: 50px;
   height: 100%;
-  position: absolute;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 4px;
+  position: absolute;
   left: 0;
   top: 0;
+  right: 0;
 `;
 
 const Input = styled.input`
   position: absolute;
   right: 0;
   top: 0;
-  width: 95%;
+  left: 0%;
+  width: 90%;
   height: 100%;
   border: none;
-  /* background-color: #ffffff; */
   outline: none;
   font-size: 1.2em;
   padding: 0 10px;
