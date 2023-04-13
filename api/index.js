@@ -32,7 +32,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",
-      "https://blinkit-web-app-clone-vxnx-en0p02a70-abhaykadam57.vercel.app/",
+      "https://blinkit-web-app-clone-vxnx.vercel.app",
     ],
   })
 );
