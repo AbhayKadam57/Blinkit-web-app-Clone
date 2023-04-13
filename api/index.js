@@ -28,7 +28,14 @@ const Connect = async () => {
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "https://blinkit-web-app-clone-vxnx-en0p02a70-abhaykadam57.vercel.app/",
+    ],
+  })
+);
 app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
