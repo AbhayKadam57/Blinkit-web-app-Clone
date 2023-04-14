@@ -9,12 +9,20 @@ import {
   faPlus,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, {
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useState,
+  memo,
+} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { publicRequest, userRequest } from "../apiRequest";
 import { AddProducts, UpdateProducts } from "../redux/cartSlice";
 import { Link } from "react-router-dom";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 const Container = styled.div`
   display: flex;
@@ -61,6 +69,10 @@ const Slider = styled.div`
 `;
 
 const SingleProduct = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   width: 11em;
   height: 250px;
   flex-shrink: 0;
@@ -71,18 +83,23 @@ const SingleProduct = styled.div`
   /* gap: 10px; */
   text-decoration: none;
   color: #000;
-
-  img {
+  /* img {
     width: 100%;
     height: 50%;
     object-fit: contain;
-  }
+  } */
 
   &:hover {
     border: 1px solid #0c831f;
     cursor: pointer;
     box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.2);
   }
+`;
+
+const Image = styled(LazyLoadImage)`
+  object-fit: contain;
+  min-width: 90%;
+  height: 120px;
 `;
 
 const ProductInfo = styled.div`
@@ -173,19 +190,27 @@ const CategoryProducts = ({ category }) => {
     }
   };
 
-  useEffect(() => {
-    const getProducts = async () => {
-      try {
-        const res = await userRequest.get(`/product/find?category=${category}`);
+  const GetProducts = useMemo(async () => {
+    try {
+      const res = await userRequest.get(`/product/find?category=${category}`);
 
-        setCatgoryProducts(res.data);
-      } catch (e) {
-        console.log(e);
-      }
-    };
-
-    getProducts();
+      setCatgoryProducts(res.data);
+    } catch (e) {
+      console.log(e);
+    }
   }, [category]);
+
+  useEffect(() => {
+    let Subscribed = true;
+
+    if (Subscribed) {
+      GetProducts;
+    }
+
+    return () => {
+      Subscribed = false;
+    };
+  }, []);
 
   const addProducts = (product) => {
     dispatch(AddProducts(product));
@@ -208,9 +233,11 @@ const CategoryProducts = ({ category }) => {
               <SingleProduct key={product._id}>
                 <Link
                   to={`/${category}/${product._id}`}
-                  style={{ cursor: "pointer" }}
+                  style={{
+                    cursor: "pointer",
+                  }}
                 >
-                  <img src={product.images[0]} />
+                  <Image src={product.images[0]} effect="blur" />
                 </Link>
                 <ProductInfo>
                   <p>{product.name.slice(0, 25)}...</p>
@@ -252,4 +279,4 @@ const CategoryProducts = ({ category }) => {
   );
 };
 
-export default CategoryProducts;
+export default memo(CategoryProducts);

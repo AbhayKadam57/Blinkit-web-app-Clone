@@ -5,7 +5,13 @@ import {
   faSortDown,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, {
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useState,
+  memo,
+} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
@@ -14,6 +20,8 @@ import Navbar from "../components/Navbar";
 import { AddProducts, UpdateProducts } from "../redux/cartSlice";
 import { Link } from "react-router-dom";
 import { laptop, mobile, tablet } from "../responsive";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 const Container = styled.div`
   display: flex;
@@ -80,7 +88,8 @@ const Category = styled.div`
   })}
 
   p {
-    font-size: 18px;
+    font-size: 15px;
+    font-weight: 500;
     text-transform: capitalize;
     ${laptop({
       fontSize: "0.8em",
@@ -219,7 +228,7 @@ const RightBottom = styled.div`
 
 const ProductBox = styled.div`
   width: 25%;
-  height: 20em;
+  min-height: 20em;
   display: flex;
   flex-direction: column;
   padding: 10px;
@@ -245,10 +254,14 @@ const Links = styled(Link)`
   height: 50%;
 `;
 
-const ProductImage = styled.img`
+const ProductImage = styled(LazyLoadImage)`
+  /* width: 60%; */
   width: 100%;
-  height: 100%;
+  height: 10em;
   object-fit: contain;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 // const Button = styled.button`
@@ -310,50 +323,51 @@ const ProductListing = () => {
 
   const dispatch = useDispatch();
 
+  const GetDataByChoose = useMemo(async () => {
+    try {
+      const res = await publicRequest.get(
+        `/product/find?subcategory=${choose}`
+      );
+
+      setProductList(res.data);
+
+      SetChoose(res.data[0].subcategory);
+    } catch (e) {
+      console.log(e);
+    }
+  }, [choose]);
+
   useEffect(() => {
     let isSubscribe = true;
 
-    const getData = async () => {
-      try {
-        const res = await publicRequest.get(
-          `/product/find?subcategory=${choose}`
-        );
-
-        setProductList(res.data);
-
-        SetChoose(res.data[0].subcategory);
-      } catch (e) {
-        console.log(e);
-      }
-    };
-
     if (isSubscribe) {
-      getData();
+      GetDataByChoose;
     }
 
     return () => {
       isSubscribe = false;
     };
-  }, [choose]);
+  }, []);
+
+  const GetDataForSorting = useMemo(async () => {
+    try {
+      const res = await userRequest.get(
+        `/product/filter/${user._id}?subcategory=${choose}&sort=${sortSelect}`
+      );
+
+      console.log(res.data);
+
+      setProductList(res.data);
+    } catch (e) {
+      console.log(e);
+    }
+  }, [sortSelect, subcategory, choose]);
 
   useEffect(() => {
     let isSubscribe = true;
-    const getData = async () => {
-      try {
-        const res = await userRequest.get(
-          `/product/filter/${user._id}?subcategory=${choose}&sort=${sortSelect}`
-        );
-
-        console.log(res.data);
-
-        setProductList(res.data);
-      } catch (e) {
-        console.log(e);
-      }
-    };
 
     if (isSubscribe) {
-      getData();
+      GetDataForSorting;
     }
 
     return () => {
@@ -374,32 +388,32 @@ const ProductListing = () => {
     setSortSelect(type);
   };
 
+  const GetCategory = useMemo(async () => {
+    try {
+      const res = await userRequest.get(`/product/find?category=${category}`);
+
+      console.log(res.data);
+      SetChoose(res.data[0].subcategory);
+
+      let arr = [];
+
+      for (let i = 0; i < res.data.length; i++) {
+        if (!arr.includes(res.data[i].subcategory)) {
+          arr.push(res.data[i].subcategory);
+        }
+      }
+
+      setSubCategory([...arr]);
+    } catch (e) {
+      console.log(e);
+    }
+  }, [category]);
+
   useEffect(() => {
     let isSubscribe = true;
 
-    const getData = async () => {
-      try {
-        const res = await userRequest.get(`/product/find?category=${category}`);
-
-        console.log(res.data);
-        SetChoose(res.data[0].subcategory);
-
-        let arr = [];
-
-        for (let i = 0; i < res.data.length; i++) {
-          if (!arr.includes(res.data[i].subcategory)) {
-            arr.push(res.data[i].subcategory);
-          }
-        }
-
-        setSubCategory([...arr]);
-      } catch (e) {
-        console.log(e);
-      }
-    };
-
     if (isSubscribe) {
-      getData();
+      GetCategory;
     }
 
     return () => {
@@ -474,8 +488,15 @@ const ProductListing = () => {
           <RightBottom>
             {productList.map((product, i) => (
               <ProductBox>
-                <Links to={`/${category}/${product._id}`}>
-                  <ProductImage src={product.images[0]} />
+                <Links
+                  to={`/${category}/${product._id}`}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <ProductImage src={product.images[0]} effect="blur" />
                 </Links>
 
                 <p>{product.name.slice(0, 20)}...</p>
@@ -512,4 +533,4 @@ const ProductListing = () => {
   );
 };
 
-export default ProductListing;
+export default memo(ProductListing);

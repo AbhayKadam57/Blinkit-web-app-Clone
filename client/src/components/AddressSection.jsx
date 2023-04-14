@@ -1,6 +1,6 @@
 import { faClose, faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { OpenaddressBook } from "../redux/cartSlice";
@@ -164,33 +164,38 @@ const AddressSection = () => {
   const [addressList, setAddressList] = useState([]);
 
   const [selectedAddress, setSelectedAddress] = useState("");
+
+  const GetAddress = useMemo(async () => {
+    try {
+      const res = await userRequest.get(`/user/getAddress/${user?._id}`);
+
+      console.log(res);
+
+      let arr = [];
+
+      res.data.address.map((item, i) => {
+        let str = "";
+        for (let key in item) {
+          str += item[key] + ",";
+        }
+        arr.push(str);
+      });
+
+      setAddressList([...arr]);
+    } catch (e) {
+      console.log(e);
+    }
+  }, [showAddress]);
+
   useEffect(() => {
-    const getAddress = async () => {
-      try {
-        const res = await userRequest.get(`/user/getAddress/${user?._id}`);
+    let Subscribed = true;
 
-        console.log(res);
-
-        let arr = [];
-
-        res.data.address.map((item, i) => {
-          let str = "";
-          for (let key in item) {
-            str += item[key] + ",";
-          }
-          arr.push(str);
-        });
-
-        setAddressList([...arr]);
-      } catch (e) {
-        console.log(e);
-      }
-    };
-
-    getAddress();
+    if (Subscribed) {
+      GetAddress;
+    }
 
     return () => {
-      getAddress();
+      Subscribed = false;
     };
   }, [showAddress]);
 

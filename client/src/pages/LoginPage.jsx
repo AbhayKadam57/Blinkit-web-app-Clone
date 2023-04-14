@@ -91,8 +91,6 @@ const LoginPage = () => {
     setUser({ ...users, [e.target.name]: e.target.value });
   };
 
-  console.log(users);
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -113,14 +111,14 @@ const LoginPage = () => {
             type="text"
             placeholder="Username"
             name="username"
-            value={users.username}
+            // value={users.username}
             onChange={(e) => handleChange(e)}
           />
           <Input
             type="password"
             placeholder="Password"
             name="password"
-            value={users.password}
+            // value={users.password}
             onChange={(e) => handleChange(e)}
           />
           <Button>Login</Button>

@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import styled from "styled-components";
 import { publicRequest, userRequest } from "../apiRequest";
 import { Link } from "react-router-dom";
 import { mobile } from "../responsive";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 const Container = styled.div`
   display: flex;
@@ -26,17 +28,21 @@ const CatetogryBox = styled.div`
 
 const Box = styled(Link)`
   width: 8em;
-  height: 6em;
   text-align: center;
   text-decoration: none;
   color: #222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   ${mobile({ width: "6em" })}
-  img {
+  /* img {
     width: 100%;
     height: 100%;
     object-fit: contain;
     border-radius: 10px;
-  }
+  } */
 
   p {
     font-size: 14px;
@@ -45,21 +51,36 @@ const Box = styled(Link)`
   }
 `;
 
+const Image = styled(LazyLoadImage)`
+  width: 80%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 10px;
+`;
+
 const ProductList = () => {
   const [categoryList, SetCategoryList] = useState([]);
 
+  const getCat = useMemo(async () => {
+    try {
+      const cat = await userRequest.get("/product/getallcategories");
+
+      SetCategoryList(cat.data);
+    } catch (e) {
+      console.log(e);
+    }
+  }, []);
+
   useEffect(() => {
-    const getCat = async () => {
-      try {
-        const cat = await userRequest.get("/product/getallcategories");
+    let Subscribe = true;
 
-        SetCategoryList(cat.data);
-      } catch (e) {
-        console.log(e);
-      }
+    if (Subscribe) {
+      getCat;
+    }
+
+    return () => {
+      Subscribe = false;
     };
-
-    getCat();
   }, []);
 
   return (
@@ -67,7 +88,7 @@ const ProductList = () => {
       <CatetogryBox>
         {categoryList.map((item) => (
           <Box to={`/${item.category}`} key={item._id}>
-            <img src={item.image} />
+            <Image src={item.image} effect="blur" alt="category" />
             <p>{item.category}</p>
           </Box>
         ))}

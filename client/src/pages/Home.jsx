@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import { publicRequest, userRequest } from "../apiRequest";
 import styled from "styled-components";
 import Navbar from "../components/Navbar";
 import Banner from "../components/Banner";
 import ProductList from "../components/ProductList";
-import CategoryProducts from "../components/CategoryProducts";
+// import CategoryProducts from "../components/CategoryProducts";
 import Cart from "./Cart";
 import { memo } from "react";
 import Loader from "../components/Loader";
+import { lazy } from "react";
+const MyCategoryProducts = lazy(() => import("../components/CategoryProducts"));
 
 const Container = styled.div`
   display: flex;
@@ -63,33 +65,33 @@ const Home = () => {
   //   }
   // };
 
+  const GetProducts = useMemo(async () => {
+    try {
+      const res = await userRequest.get("/product/find");
+
+      res.data.map((item) => {
+        for (let key in item) {
+          if (!categories.includes(item["category"]) && key === "category") {
+            setCategories([...categories, item["category"]]);
+          }
+        }
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }, [categories]);
+
   useEffect(() => {
     let isSubscribe = true;
 
-    const getProducts = async () => {
-      try {
-        const res = await userRequest.get("/product/find");
-
-        res.data.map((item) => {
-          for (let key in item) {
-            if (!categories.includes(item["category"]) && key === "category") {
-              setCategories([...categories, item["category"]]);
-            }
-          }
-        });
-      } catch (e) {
-        console.log(e);
-      }
-    };
-
     if (isSubscribe) {
-      getProducts();
+      GetProducts;
     }
 
     return () => {
       isSubscribe = false;
     };
-  }, [categories]);
+  }, [GetProducts]);
 
   return (
     <Container show={openCart}>
@@ -102,7 +104,7 @@ const Home = () => {
         <ProductList />
 
         {categories.map((item, key) => (
-          <CategoryProducts category={item} key={key} />
+          <MyCategoryProducts category={item} key={key} />
         ))}
       </>
 

@@ -28,14 +28,7 @@ const Connect = async () => {
 
 const app = express();
 
-app.use(
-  cors({
-    origin: [
-      "http://localhost:5173",
-      "https://blinkit-web-app-clone-vxnx.vercel.app",
-    ],
-  })
-);
+app.use(cors());
 app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -43,12 +36,12 @@ app.use(
   morgan(":method :url :status :res[content-length] - :response-time ms")
 );
 
-app.use("api/user", UserAuthRoutes);
-app.use("api/userOperation", UserOperationRoutes);
-app.use("api/product", ProductRoutes);
-app.use("api/cart", CartRoutes);
-app.use("api/order", OrderRoutes);
-app.use("api/payment", PaymentRoutes);
+app.use("/api/user", UserAuthRoutes);
+app.use("/api/userOperation", UserOperationRoutes);
+app.use("/api/product", ProductRoutes);
+app.use("/api/cart", CartRoutes);
+app.use("/api/order", OrderRoutes);
+app.use("/api/payment", PaymentRoutes);
 
 app.use(express.static(path.join(__dirname, "../client/dist")));
 

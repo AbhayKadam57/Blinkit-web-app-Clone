@@ -5,7 +5,7 @@ import {
   faPlus,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState, Suspense } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
@@ -13,6 +13,8 @@ import { publicRequest, userRequest } from "../apiRequest";
 import Navbar from "../components/Navbar";
 import { AddProducts, UpdateProducts } from "../redux/cartSlice";
 import { mobile } from "../responsive";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 const Container = styled.div`
   display: flex;
@@ -47,27 +49,28 @@ const Left = styled.div`
 
 const Slider = styled.div`
   display: flex;
+  justify-content: center;
   flex-direction: column;
   width: 100%;
   height: 80%;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 `;
 
-const Images = styled.div`
-  width: 100%;
-  height: 70%;
+const Images = styled(LazyLoadImage)`
+  width: 80%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   padding: 10px;
 
-  img {
+  /* img {
     width: 90%;
     height: 90%;
     object-fit: contain;
     transition: all 0.5s ease-in-out;
-  }
+  } */
 `;
 
 const ImageGroup = styled.div`
@@ -259,26 +262,26 @@ const ProductPage = () => {
 
   const dispatch = useDispatch();
 
+  const GetProducts = useMemo(async () => {
+    try {
+      const res = await userRequest.get(
+        `/product/getproduct/${user._id}/${id}`
+      );
+
+      console.log(res.data);
+
+      Setproduct(res.data);
+      SetActiveImage(res.data.images[0]);
+    } catch (e) {
+      console.log(e);
+    }
+  }, [id]);
+
   useEffect(() => {
     let isSubscribe = true;
 
-    const getProduct = async () => {
-      try {
-        const res = await userRequest.get(
-          `/product/getproduct/${user._id}/${id}`
-        );
-
-        console.log(res.data);
-
-        Setproduct(res.data);
-        SetActiveImage(res.data.images[0]);
-      } catch (e) {
-        console.log(e);
-      }
-    };
-
     if (isSubscribe) {
-      getProduct();
+      GetProducts;
     }
 
     return () => {
@@ -316,9 +319,10 @@ const ProductPage = () => {
       <Box>
         <Left>
           <Slider>
-            <Images>
+            {/* <Images>
               <img src={activeImage || ""} />
-            </Images>
+            </Images> */}
+            <Images effect="blur" src={activeImage} alt="product" />
 
             <ImageGroup>
               <MainSilder show={change}>
