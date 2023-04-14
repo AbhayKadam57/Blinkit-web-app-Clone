@@ -184,6 +184,7 @@ const Options = styled.div`
   display: ${(props) => (props.selectOp ? "flex" : "none")};
   cursor: pointer;
   background-color: #fff;
+  z-index: 10;
 `;
 
 const Option = styled.div`
