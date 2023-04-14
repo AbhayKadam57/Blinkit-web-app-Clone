@@ -28,7 +28,14 @@ const Connect = async () => {
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "https://my-blink-clone-client.vercel.app",
+      "http://localhost:5173",
+    ],
+  })
+);
 app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
