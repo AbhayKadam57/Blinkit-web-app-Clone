@@ -10,4 +10,16 @@ const GetAllUser = async (req, res) => {
   }
 };
 
-module.exports = { GetAllUser };
+const GetUser = async (req, res) => {
+  const id = req.body.id;
+
+  try {
+    const user = await User.findOne({ _id: id });
+
+    res.status(200).json(user);
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+module.exports = { GetAllUser, GetUser };

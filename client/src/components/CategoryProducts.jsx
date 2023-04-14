@@ -210,7 +210,7 @@ const CategoryProducts = ({ category }) => {
     return () => {
       Subscribed = false;
     };
-  }, []);
+  }, [category]);
 
   const addProducts = (product) => {
     dispatch(AddProducts(product));
@@ -218,6 +218,14 @@ const CategoryProducts = ({ category }) => {
 
   const updateQuantity = (type, product) => {
     dispatch(UpdateProducts({ type, product }));
+  };
+
+  const HandelClick = () => {
+    let expirationTime = localStorage.getItem("expirationTime");
+
+    if (!expirationTime) {
+      window.location.reload(true);
+    }
   };
 
   return (
@@ -236,6 +244,7 @@ const CategoryProducts = ({ category }) => {
                   style={{
                     cursor: "pointer",
                   }}
+                  onClick={() => HandelClick()}
                 >
                   <Image src={product.images[0]} effect="blur" />
                 </Link>

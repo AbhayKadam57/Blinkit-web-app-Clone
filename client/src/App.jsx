@@ -31,11 +31,35 @@ function App() {
 
   const { user } = useSelector((state) => state.usersInfo);
 
+  console.log(user);
+
   const { openCart } = useSelector((state) => state.cartInfo);
 
   const { products, quantity, total, selected } = useSelector(
     (state) => state.cartInfo
   );
+
+  useEffect(() => {
+    const currentTime = new Date().getTime();
+
+    let expirationTime = currentTime + 60 * 60 * 1000;
+
+    localStorage.setItem("expirationTime", expirationTime);
+
+    const Timer = setTimeout(() => {
+      const currTime = new Date().getTime();
+
+      const expirationTion = localStorage.getItem("expirationTime");
+
+      if (currTime >= expirationTion) {
+        localStorage.clear();
+      }
+    }, 60 * 60 * 1000);
+
+    return () => {
+      clearTimeout(Timer);
+    };
+  }, []);
 
   useEffect(() => {
     let isSubscribe = true;

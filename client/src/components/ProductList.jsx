@@ -83,11 +83,23 @@ const ProductList = () => {
     };
   }, []);
 
+  const HandelClick = () => {
+    let expirationTime = localStorage.getItem("expirationTime");
+
+    if (!expirationTime) {
+      window.location.reload(true);
+    }
+  };
+
   return (
     <Container>
       <CatetogryBox>
         {categoryList.map((item) => (
-          <Box to={`/${item.category}`} key={item._id}>
+          <Box
+            onClick={() => HandelClick()}
+            to={`/${item.category}`}
+            key={item._id}
+          >
             <Image src={item.image} effect="blur" alt="category" />
             <p>{item.category}</p>
           </Box>
