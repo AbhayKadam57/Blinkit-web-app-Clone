@@ -30,12 +30,12 @@ const app = express();
 
 app.use(
   cors({
-    origin: [
-      "https://my-blink-clone-client.vercel.app",
-      "http://localhost:5173",
-    ],
+    allowedHeaders: "*",
+    allowMethods: "*",
+    origin: "*",
   })
 );
+
 // app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -49,6 +49,8 @@ app.use("/api/product", ProductRoutes);
 app.use("/api/cart", CartRoutes);
 app.use("/api/order", OrderRoutes);
 app.use("/api/payment", PaymentRoutes);
+
+console.log(path.join(__dirname, "../client/dist"));
 
 app.use(express.static(path.join(__dirname, "../client/dist")));
 
