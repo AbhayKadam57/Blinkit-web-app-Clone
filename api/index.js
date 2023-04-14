@@ -31,7 +31,7 @@ const app = express();
 app.use(
   cors({
     origin: [
-      "https://my-blink-clone-client.vercel.app",
+      "https://my-blink-clone-client-5f1hom99w-abhaykadam57.vercel.app",
       "http://localhost:5173",
     ],
   })
