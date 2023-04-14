@@ -32,9 +32,11 @@ app.use(
   cors({
     allowedHeaders: "*",
     allowMethods: "*",
-    origin: "*",
+    origin: "https://my-blink-clone-client.vercel.app",
   })
 );
+
+app.options("*", cors());
 
 // app.use(helmet());
 app.use(express.json());
