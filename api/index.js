@@ -28,13 +28,7 @@ const Connect = async () => {
 
 const app = express();
 
-app.use(
-  cors({
-    allowedHeaders: "*",
-    allowMethods: "*",
-    origin: "https://my-blink-clone-client.vercel.app",
-  })
-);
+app.use(cors());
 
 app.options("*", cors());
 
