@@ -4,7 +4,7 @@
 
 This is a Blink-it clone project built with the MERN stack, including Axios,Redux-toolkit and Razorpay Payment Gateway integration. The project aims to provide a platform for users to buy grocery items online.
 
-Live Website - https://my-blinkit-clone-client.onrender.com/
+Live Website - https://blinkit-clone-by-abhay.onrender.com/
 
 Watch Live Demo - https://share-me.video/video/WpFJeJBidkK0pqPKpDMFGno6yE13z3XfN9BKoPD3na1ncT4li1sxC9qaNH9ma4uv
 
