@@ -2,11 +2,11 @@ import axios from "axios";
 import jwt_decode from "jwt-decode";
 
 export const publicRequest = axios.create({
-  baseURL: `${import.meta.env.VITE_BACKEND_API_URL}/api`,
+  baseURL: `https://blinkit-web-app-clone-production.up.railway.app/api`,
 });
 
 export const userRequest = axios.create({
-  baseURL: `${import.meta.env.VITE_BACKEND_API_URL}/api`,
+  baseURL: `https://blinkit-web-app-clone-production.up.railway.app/api`,
 });
 
 const NewRefershTokenGenrate = async () => {
