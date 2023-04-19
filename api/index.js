@@ -28,7 +28,11 @@ const Connect = async () => {
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://main--lively-churros-3fc19b.netlify.app",
+  })
+);
 
 app.options("*", cors());
 
