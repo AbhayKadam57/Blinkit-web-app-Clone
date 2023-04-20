@@ -192,7 +192,7 @@ const CategoryProducts = ({ category }) => {
 
   const GetProducts = useMemo(async () => {
     try {
-      const res = await userRequest.get(`/product/find?category=${category}`);
+      const res = await publicRequest.get(`/product/find?category=${category}`);
 
       setCatgoryProducts(res.data);
     } catch (e) {

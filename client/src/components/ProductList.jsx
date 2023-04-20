@@ -63,7 +63,7 @@ const ProductList = () => {
 
   const getCat = useMemo(async () => {
     try {
-      const cat = await userRequest.get("/product/getallcategories");
+      const cat = await publicRequest.get("/product/getallcategories");
 
       SetCategoryList(cat.data);
     } catch (e) {
