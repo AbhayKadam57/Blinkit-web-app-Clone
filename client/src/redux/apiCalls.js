@@ -45,6 +45,13 @@ export const LoginUser = async (dispatch, user) => {
 
     localStorage.setItem("refreshToken", refreshToken);
 
+    //this is added for expiration on date-8-05-2023
+    const currentTime = new Date().getTime();
+
+    let expirationTime = currentTime + 30 * 60 * 1000;
+
+    localStorage.setItem("expirationTime", expirationTime);
+
     dispatch(LoginUserSuccessFull({ ...other }));
     window.location.reload(true);
   } catch (e) {

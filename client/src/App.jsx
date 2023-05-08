@@ -29,6 +29,8 @@ const Container = styled.div`
 function App() {
   // const [User, setUser] = useState("");
 
+  const [userID, setUserId] = useState("");
+
   const { user } = useSelector((state) => state.usersInfo);
 
   console.log(user);
@@ -40,25 +42,13 @@ function App() {
   );
 
   useEffect(() => {
-    const currentTime = new Date().getTime();
+    let currentTime = new Date().getTime();
+    const expirationTime = localStorage.getItem("expirationTime");
 
-    let expirationTime = currentTime + 60 * 60 * 1000;
-
-    localStorage.setItem("expirationTime", expirationTime);
-
-    const Timer = setTimeout(() => {
-      const currTime = new Date().getTime();
-
-      const expirationTion = localStorage.getItem("expirationTime");
-
-      if (currTime >= expirationTion) {
-        localStorage.clear();
-      }
-    }, 60 * 60 * 1000);
-
-    return () => {
-      clearTimeout(Timer);
-    };
+    //This is added on 08-05-2023 for expiry of session
+    if (currentTime >= expirationTime) {
+      localStorage.clear();
+    }
   }, []);
 
   useEffect(() => {
