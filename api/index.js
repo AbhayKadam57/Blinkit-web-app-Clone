@@ -39,6 +39,10 @@ app.use(
   morgan(":method :url :status :res[content-length] - :response-time ms")
 );
 
+app.get("/", (req, res) => {
+  res.status(200).send("<h1>Welcome to BlinkIt API</h1>");
+});
+
 app.use("/api/user", UserAuthRoutes);
 app.use("/api/userOperation", UserOperationRoutes);
 app.use("/api/product", ProductRoutes);
