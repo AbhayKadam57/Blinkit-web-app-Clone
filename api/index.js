@@ -30,7 +30,7 @@ const app = express();
 
 app.use(cors());
 
-app.options("*", cors());
+// app.options("*", cors());
 
 // app.use(helmet());
 app.use(express.json());
@@ -50,13 +50,13 @@ app.use("/api/cart", CartRoutes);
 app.use("/api/order", OrderRoutes);
 app.use("/api/payment", PaymentRoutes);
 
-console.log(path.join(__dirname, "../client/dist"));
+// console.log(path.join(__dirname, "../client/dist"));
 
-app.use(express.static(path.join(__dirname, "../client/dist")));
+// app.use(express.static(path.join(__dirname, "../client/dist")));
 
-app.get("*", function (req, res) {
-  res.sendFile(path.join(__dirname, "../client/dist/index.html"));
-});
+// app.get("*", function (req, res) {
+//   res.sendFile(path.join(__dirname, "../client/dist/index.html"));
+// });
 
 app.listen(PORT, () => {
   Connect();
