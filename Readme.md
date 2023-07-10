@@ -1,12 +1,10 @@
 # Blink-it Clone with MERN Stack
 
-<img src="https://i.ibb.co/8YWW2QK/Screenshot-2023-04-03-185016.jpg"/>
+<img src="https://i.ibb.co/7YBSBH4/Screenshot-2023-07-11-013700.jpg"/>
 
 This is a Blink-it clone project built with the MERN stack, including Axios,Redux-toolkit and Razorpay Payment Gateway integration. The project aims to provide a platform for users to buy grocery items online.
 
 Live Website - https://main--bucolic-heliotrope-70e301.netlify.app/
-
-Watch Live Demo - https://share-me.video/video/WpFJeJBidkK0pqPKpDMFGno6yE13z3XfN9BKoPD3na1ncT4li1sxC9qaNH9ma4uv
 
 ### 📝 Table of Contents
 
@@ -32,7 +30,7 @@ This project is built with the following technologies:
 
 - MERN stack (MongoDB, Express, React, Node.js)
 - Axios (for HTTP requests)
-- JWT Token with toke generation and verification. also includes Refesh Token with JWT and axios interceptors
+- JWT Token with token generation and verification. also includes Refesh Token with JWT and axios interceptors
 - Razorpay Payment Gateway
 - Styled components (for styling)
 - Font Awesome (for icons)
