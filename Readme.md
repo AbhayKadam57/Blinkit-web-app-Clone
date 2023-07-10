@@ -1,4 +1,4 @@
-# Blink-it Clone with MERN Stack
+# Flink-it Grocery Web app(responsive) with MERN Stack
 
 <img src="https://i.ibb.co/7YBSBH4/Screenshot-2023-07-11-013700.jpg"/>
 
