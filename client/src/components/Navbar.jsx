@@ -31,7 +31,8 @@ const Left = styled.div`
   border: 1px solid #eee;
 
   img {
-    width: 80%;
+    width: 60%;
+    margin-left: 2em;
   }
 
   &:hover {
@@ -127,7 +128,7 @@ const Navbar = () => {
     <Container>
       <Left>
         <Link to="/">
-          <img src="../blinkitlogo.png" />
+          <img src="../flinkitNew.png" />
         </Link>
       </Left>
       <Center>
