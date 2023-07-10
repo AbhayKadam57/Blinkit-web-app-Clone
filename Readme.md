@@ -62,7 +62,7 @@ To run this project on your local machine, follow these steps:
 ```
     VITE_RAZORPAY_KEY_ID =<RAZORPAY_KEY_ID>(same as used in api folder)
     VITE_RAZORPAY_KEY_SECRET =<RAZORPAY_KEY_SECRET>(same as used in api folder)
-    VITE_BACKEND_API_URL=http://localhost:5500
+    VITE_BACKEND_API_URL=http://localhost:5500/api
 
 ```
 
