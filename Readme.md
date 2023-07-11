@@ -2,7 +2,7 @@
 
 <img src="https://i.ibb.co/7YBSBH4/Screenshot-2023-07-11-013700.jpg"/>
 
-This is a Blink-it clone project built with the MERN stack, including Axios,Redux-toolkit and Razorpay Payment Gateway integration. The project aims to provide a platform for users to buy grocery items online.
+This is a Blink-it clone project named Flinkit, built with the MERN stack, including Axios,Redux-toolkit and Razorpay Payment Gateway integration. The project aims to provide a platform for users to buy grocery items online.
 
 Live Website - https://main--bucolic-heliotrope-70e301.netlify.app/
 
@@ -40,7 +40,7 @@ This project is built with the following technologies:
 To run this project on your local machine, follow these steps:
 
 1. Clone the repository: git clone https://github.com/AbhayKadam57/Blinkit-web-app-Clone.git
-2. Change directory: `cd api`
+2. Change directory: `cd server`
 3. Install dependencies: `npm install`
 4. Create a .env file and add the following environment variables
 
@@ -55,7 +55,7 @@ To run this project on your local machine, follow these steps:
 
 5. Start the backend server: `npm start`(if you are using nodemon then change in script of pacakge.json for start i.e `nodemon index.js`)
 
-6. Then `cd ..` to comes back to root file and do `cd client` and then do `npm install`.
+6. Then `cd ..` to comes back to root file and do `cd app` and then do `npm install`.
 
 7. Create a .env file and add the following environment variables
 
@@ -100,5 +100,5 @@ for failure test - failure@razorpay
 
 [@AbhayKadam57](https://github.com/AbhayKadam57) - only for clone making
 
-- Desclaimer - All rights of design and images are belong to the blink it compony.
+- Desclaimer - All rights of images are belong to the blink it compony.
   This project is created just for educational purposes only. we do not intend to use it for any commercial purposes.
