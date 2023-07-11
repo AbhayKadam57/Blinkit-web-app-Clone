@@ -60,8 +60,8 @@ To run this project on your local machine, follow these steps:
 7. Create a .env file and add the following environment variables
 
 ```
-    VITE_RAZORPAY_KEY_ID =<RAZORPAY_KEY_ID>(same as used in api folder)
-    VITE_RAZORPAY_KEY_SECRET =<RAZORPAY_KEY_SECRET>(same as used in api folder)
+    VITE_RAZORPAY_KEY_ID =<RAZORPAY_KEY_ID>(same as used in server folder)
+    VITE_RAZORPAY_KEY_SECRET =<RAZORPAY_KEY_SECRET>(same as used in server folder)
     VITE_BACKEND_API_URL=http://localhost:5500/api
 
 ```
