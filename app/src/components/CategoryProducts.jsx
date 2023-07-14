@@ -186,7 +186,8 @@ const CategoryProducts = ({ category }) => {
     if (type === "left") {
       change > 0 && setChange(change - 1);
     } else if (type === "right") {
-      change >= 0 && change <= 20 && setChange(change + 1);
+      change >= 0 && change <= CategoryProducts.length && setChange(change + 1);
+
     }
   };
 
